@@ -10,6 +10,7 @@ from twitter_query import KEY_CONTENTS, KEY_DATE, KEY_AUTHOR, KEY_URL
 from twitter_query import DATABASE_URL, TWITTER_ACCESS_TOKEN, \
             TWITTER_ACCESS_TOKEN_SECRET, TWITTER_KEY, TWITTER_KEY_SECRET
 
+import unittest.mock as mock
 from dotenv import load_dotenv
 import tweepy
 import random
@@ -38,6 +39,10 @@ class TwitterQueryTestCase(unittest.TestCase):
             },
         ]
 
+    def mocked_random_choice(self, values):
+        return values[0]
+
+
     def test_get_random_tweet_success(self):
         for test_case in self.success_test_params:
             relevant_tweets = get_relevant_tweets(
@@ -48,7 +53,9 @@ class TwitterQueryTestCase(unittest.TestCase):
                 key_secret = TWITTER_KEY_SECRET,
                 count = 3)
                 
-            random_tweet = get_random_tweet(relevant_tweets)
+            with mock.patch('random.choice', self.mocked_random_choice):
+                random_tweet = get_random_tweet(relevant_tweets)
+                
             expected = test_case[KEY_EXPECTED]
             
             self.assertEqual(random_tweet[KEY_AUTHOR], expected[KEY_AUTHOR])
