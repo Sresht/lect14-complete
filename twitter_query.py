@@ -17,12 +17,9 @@ KEY_DATE = "date"
 KEY_AUTHOR = "author"
 KEY_URL = "url"
 
-dotenv_path = join(dirname(__file__), 'sql.env')
-load_dotenv(dotenv_path)
 dotenv_path = join(dirname(__file__), 'tweepy.env')
 load_dotenv(dotenv_path)
 
-DATABASE_URL = os.environ['DATABASE_URL']
 TWITTER_ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 TWITTER_ACCESS_TOKEN_SECRET = os.environ['ACCESS_TOKEN_SECRET']
 TWITTER_KEY = os.environ['KEY']
