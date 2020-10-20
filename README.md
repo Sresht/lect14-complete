@@ -1,6 +1,6 @@
 # Lecture 14 - Mocking
 
-Get started by running `git clone https://github.com/Sresht/lect14`  
+Get started by running `git clone https://github.com/Sresht/lect14-complete`  
 
 ## Set Up
 
